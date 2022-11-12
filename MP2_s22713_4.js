@@ -34,7 +34,7 @@ function set_pixel(x,y,c){
     idx = (y*512+x)*4;
     pixels[idx] = c;
     pixels[idx+1] = c;
-    pixels[idx+2] = c;
+    pixels[idx+2] = 0;
     pixels[idx+3] = 255;
 }
 
@@ -43,6 +43,7 @@ function draw_line(){
     dy = round(y1) - round(y0);
     a = dy/dx;
     b = round(y0) - a * round(x0);
+    Dxy2 = 2*dy-dx;
     for (i = x0; i <= x1; i++){
         y = round((i*a) + b);
         set_pixel(i, y, 0);

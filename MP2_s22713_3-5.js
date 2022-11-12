@@ -26,25 +26,29 @@ function mouseDragged(){
 function mouseReleased(){
     background(255);
     loadPixels();
-    draw_line();
+    color_screen();
     updatePixels();
 }
 
 function set_pixel(x,y,c){
     idx = (y*512+x)*4;
-    pixels[idx] = c;
+    pixels[idx] = -c;
     pixels[idx+1] = c;
-    pixels[idx+2] = c;
+    pixels[idx+2] = 0;
     pixels[idx+3] = 255;
 }
 
-function draw_line(){
+function color_screen(){
     dx = round(x1) - round(x0);
     dy = round(y1) - round(y0);
     a = dy/dx;
     b = round(y0) - a * round(x0);
-    for (i = x0; i <= x1; i++){
-        y = round((i*a) + b);
-        set_pixel(i, y, 0);
+
+    for(y=0; y<height; y++){
+        for(x=0; x<width; x++){
+            Dxy = (dy/dx)*(x-x0)-(y-y0);
+            Dxy2 = 2*dy*(x-x0)-(2*dx*(y-y0));
+            set_pixel(x,y,Dxy);
+        }
     }
 }
