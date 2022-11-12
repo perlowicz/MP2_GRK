@@ -14,7 +14,7 @@ function mousePressed(){
 
 function mouseDragged(){
     x1 = mouseX;
-    y2 = mouseY;
+    y1 = mouseY;
     background(255);
     noStroke();
     fill('red');
@@ -43,5 +43,8 @@ function draw_line(){
     dy = round(y1) - round(y0);
     a = dy/dx;
     b = round(y0) - a * round(x0);
-    set_pixel(a,b,0);
+    for (var i = x0; i <= x1; i++){
+        y = round((i*a) + b);
+        set_pixel(i, y, 0);
+    }
 }
