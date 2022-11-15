@@ -48,7 +48,7 @@ function color_screen(){
         for(x=0; x<width; x++){
             Dxy = (dy/dx)*(x-x0)-(y-y0);
             Dxy2 = 2*dy*(x-x0)-(2*dx*(y-y0));
-            set_pixel(x,y,Dxy);
+            set_pixel(x,y,Dxy2);
         }
     }
 }
